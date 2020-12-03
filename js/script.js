@@ -1,11 +1,3 @@
-// Esercizio: seguire le 3 milestone dell'esercizio delle Icone visto insieme stamattina.
-// Consigli:
-// prima di passare alla milestone 2, completate ogni aspetto della 1;
-// preparate un html/css base per gestire le milestone e miglioratelo successivamente, solo se avete completato le 3 milestone;
-// è meglio chiudere una sola milestone bene, piuttosto che farle tutte e 3 ma lasciandosi alle spalle delle cose non corrette.
-
-
-
 // milestone 1:
 // definire un array di oggetti; ogni oggetto
 // rappresenta un'icona, che è caratterizzata da:
@@ -13,6 +5,21 @@
 // Utilizzando la funzione forEach e il template
 // literal, visualizzare in pagina tutte le icone con il
 // proprio nome.
+//completata
+
+// milestone 2:
+// definire un array di colori e associare ad ogni
+// tipo di icona un colore.
+// Visualizzare le icone di colore diverso in base al
+// tipo.
+//completata
+
+// milestone 3:
+// aggiungere una select per filtrare le icone in
+// base al tipo.
+// Popolare le options della select dinamicamente
+// e, ogni volta che cambia il valore selezionato,
+// visualizzare le icone corrispondenti.
 
 $(document).ready(
   function () {
@@ -58,53 +65,19 @@ $(document).ready(
       ];
   const container = $(".container");
 
-  iconToContainer(icons, container);
-
   const typeIcon = getIconType(icons);
 
+  const typeColor = [
+    "red",
+    "blue",
+    "coral"
+  ];
 
-  console.log(typeIcon);
+  const coloredIcons = addColor(icons, typeColor, typeIcon);
 
+  console.log(coloredIcons);
 
-
-
-
-
-      // definire un array di colori e associare ad ogni
-      // tipo di icona un colore.
-      // Visualizzare le icone di colore diverso in base al
-      // tipo.
-
-      // creo un array dove andrò a inserire le tipologie di icone, senza ripetizioni, e un array di colori
-      // const typeColor = [
-      //   "orange",
-      //   "blue",
-      //   "coral"
-      // ];
-      //
-      // const typeIcon = [];
-      // icons.forEach (
-      //   (element) => {
-      //     if (typeIcon.includes(element.type) == false)
-      //     typeIcon.push(element.type)
-      //   }
-      // )
-      // console.log(typeIcon);
-
-
-      // const secondArray = icons.map(
-      //   (element) => {
-      //     const typePosition = typeIcon.indexOf(element.type)
-      //     console.log(element.type, typePosition);
-      //     const color = typeColor[typePosition];
-      //     const newObjectElement = {
-      //       ...element,
-      //       color
-      //     };
-      //     return newObjectElement;
-      //   }
-      // )
-      // return secondArray
+  iconToContainer(coloredIcons, container);
 
 });
 
@@ -119,7 +92,7 @@ function iconToContainer(array, container) {
     (element) => {
       container.append(`
         <div>
-        <i class="${element.family} ${element.prefix}${element.name}"></i
+        <i class="${element.family} ${element.prefix}${element.name}" style="color:${element.color}"></i
         </div>
       `)
     }
@@ -139,4 +112,20 @@ function getIconType(array) {
 
   );
   return typeIcon;
+}
+
+function addColor(array, colorArray, type) {
+  const secondArray = array.map(
+    (element) => {
+      const typePosition = type.indexOf(element.type)
+      console.log(element.type, typePosition);
+      const color = colorArray[typePosition];
+      const newObjectElement = {
+        ...element,
+        color: color
+      };
+      return newObjectElement;
+    }
+  )
+  return secondArray
 }
