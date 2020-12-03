@@ -56,25 +56,87 @@ $(document).ready(
           family: "fas"
         },
       ];
+  const container = $(".container");
 
-      icons.forEach(
-        (element) => {
-          $(".container").append(`
-            <div>
-            <i class="${element.family} ${element.prefix}${element.name}"></i
-            </div>
-          `)
-        }
-      );
+  iconToContainer(icons, container);
 
-      // creo un array dove andrò a inserire le tipologie di icone, senza ripetizioni
+  const typeIcon = getIconType(icons);
 
-      const typeIcon = [];
-      icons.forEach (
-        (element) => {
-          if (typeIcon.includes(element.type) == false)
-          typeIcon.push(element.type)
-        }
-      )
-      console.log(typeIcon);
+
+  console.log(typeIcon);
+
+
+
+
+
+
+      // definire un array di colori e associare ad ogni
+      // tipo di icona un colore.
+      // Visualizzare le icone di colore diverso in base al
+      // tipo.
+
+      // creo un array dove andrò a inserire le tipologie di icone, senza ripetizioni, e un array di colori
+      // const typeColor = [
+      //   "orange",
+      //   "blue",
+      //   "coral"
+      // ];
+      //
+      // const typeIcon = [];
+      // icons.forEach (
+      //   (element) => {
+      //     if (typeIcon.includes(element.type) == false)
+      //     typeIcon.push(element.type)
+      //   }
+      // )
+      // console.log(typeIcon);
+
+
+      // const secondArray = icons.map(
+      //   (element) => {
+      //     const typePosition = typeIcon.indexOf(element.type)
+      //     console.log(element.type, typePosition);
+      //     const color = typeColor[typePosition];
+      //     const newObjectElement = {
+      //       ...element,
+      //       color
+      //     };
+      //     return newObjectElement;
+      //   }
+      // )
+      // return secondArray
+
 });
+
+
+// funzioni ------------------------------
+
+function iconToContainer(array, container) {
+
+  container.html("");
+
+  array.forEach(
+    (element) => {
+      container.append(`
+        <div>
+        <i class="${element.family} ${element.prefix}${element.name}"></i
+        </div>
+      `)
+    }
+  );
+
+}
+
+function getIconType(array) {
+  const typeIcon = [];
+  array.forEach(
+    (element) => {
+      if (typeIcon.includes(element.type) == false)
+      typeIcon.push(element.type)
+
+    }
+
+
+  );
+  return typeIcon;
+}
