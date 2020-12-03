@@ -63,6 +63,18 @@ $(document).ready(
             <div>
             <i class="${element.family} ${element.prefix}${element.name}"></i
             </div>
-          `)      }
+          `)
+        }
       );
+
+      // creo un array dove andrò a inserire le tipologie di icone, senza ripetizioni
+
+      const typeIcon = [];
+      icons.forEach (
+        (element) => {
+          if (typeIcon.includes(element.type) == false)
+          typeIcon.push(element.type)
+        }
+      )
+      console.log(typeIcon);
 });
