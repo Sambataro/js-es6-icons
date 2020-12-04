@@ -14,13 +14,20 @@
 
 .container div {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 50px;
+  font-size: 20px;
   width: calc(100% / 6);
   height: 100%;
   border: 1px solid black;
 }
+
+.fas {
+  font-size: 50px;
+  margin: 2px;
+}
+
 
 .selettore_tipi {
   display: flex;

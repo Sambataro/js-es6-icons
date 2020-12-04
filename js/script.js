@@ -79,6 +79,26 @@ $(document).ready(
 
   iconToContainer(coloredIcons, container);
 
+  const selectTypeIcon = $("#type");
+
+  typeToSelect(selectTypeIcon, typeIcon);
+
+  selectTypeIcon.change(
+    function() {
+      const selectType = $(this).val();
+      if (selectType == "") {
+        iconToContainer(coloredIcons, container)
+      } else {
+         const filterType = coloredIcons.filter(
+           (element) => {
+            return element.type == selectType;
+           }
+         );
+         iconToContainer(filterType, container)
+      }
+    }
+  )
+
 });
 
 
@@ -93,6 +113,7 @@ function iconToContainer(array, container) {
       container.append(`
         <div>
         <i class="${element.family} ${element.prefix}${element.name}" style="color:${element.color}"></i
+        <h4>${element.name}</h4>
         </div>
       `)
     }
@@ -128,4 +149,17 @@ function addColor(array, colorArray, type) {
     }
   )
   return secondArray
+}
+
+function typeToSelect(select, types) {
+  types.forEach(
+    (element)  => {
+    select.append(`
+      <option value="${element}">${element}</option>
+
+      `)
+
+  }
+);
+
 }
